@@ -12,8 +12,7 @@
             dataUrl: buildUrl + "/Projekte.data.unityweb",
             frameworkUrl: buildUrl + "/Projekte.framework.js.unityweb",
             codeUrl: buildUrl + "/Projekte.wasm.unityweb",
-            streamingAssetsUrl: buildUrl + "/StreamingAssets",
-            companyName: "Your Company",
+            companyName: "Andrea Voggenreiter",
             productName: "JumpAndRun",
             productVersion: "1.0",
         };
