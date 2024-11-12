@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity WebGL Build</title>
+    <script>
+        var buildUrl = "Build"; // Points to the Build folder
+        var loaderUrl = buildUrl + "/Projekte.loader.js";
+        var config = {
+            dataUrl: buildUrl + "/Projekte.data",
+            frameworkUrl: buildUrl + "/Projekte.framework.js",
+            codeUrl: buildUrl + "/Projekte.wasm",
+            streamingAssetsUrl: buildUrl + "/StreamingAssets",
+            companyName: "Andrea Voggenreiter",
+            productName: "Jump and Run",
+            productVersion: "1.0",
+        };
+
+        function loadUnity() {
+            var script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+                createUnityInstance(document.querySelector("#unity-container"), config);
+            };
+            document.body.appendChild(script);
+        }
+    </script>
+</head>
+<body onload="loadUnity()">
+    <div id="unity-container" style="width: 100%; height: 100vh; background: black;"></div>
+</body>
+</html>
