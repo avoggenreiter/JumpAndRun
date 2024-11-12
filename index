@@ -3,31 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unity WebGL Build</title>
+    <title>JumpAndRun</title>
     <script>
-        var buildUrl = "Build"; // Points to the Build folder
+        // Configuration for Unity WebGL build
+        var buildUrl = "Build"; // Folder where the build files are stored
         var loaderUrl = buildUrl + "/Projekte.loader.js";
         var config = {
-            dataUrl: buildUrl + "/Projekte.data",
-            frameworkUrl: buildUrl + "/Projekte.framework.js",
-            codeUrl: buildUrl + "/Projekte.wasm",
+            dataUrl: buildUrl + "/Projekte.data.unityweb",
+            frameworkUrl: buildUrl + "/Projekte.framework.js.unityweb",
+            codeUrl: buildUrl + "/Projekte.wasm.unityweb",
             streamingAssetsUrl: buildUrl + "/StreamingAssets",
-            companyName: "Andrea Voggenreiter",
-            productName: "Jump and Run",
+            companyName: "Your Company",
+            productName: "JumpAndRun",
             productVersion: "1.0",
         };
 
+        // Function to load Unity WebGL build
         function loadUnity() {
             var script = document.createElement("script");
             script.src = loaderUrl;
             script.onload = () => {
-                createUnityInstance(document.querySelector("#unity-container"), config);
+                createUnityInstance(document.querySelector("#unity-container"), config)
+                    .then((unityInstance) => {
+                        console.log("Unity loaded successfully");
+                    })
+                    .catch((error) => {
+                        console.error("Unity failed to load:", error);
+                    });
             };
             document.body.appendChild(script);
         }
     </script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+        }
+
+        #unity-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body onload="loadUnity()">
-    <div id="unity-container" style="width: 100%; height: 100vh; background: black;"></div>
+    <div id="unity-container"></div>
 </body>
 </html>
